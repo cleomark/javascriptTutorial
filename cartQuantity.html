@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variables Project</title>
+</head>
+<body>
+    <p>Cart Quantity</p>
+    <button 
+        onclick="console.log('Cart content:', quantity);">Show Quantity
+    </button>
+    <button
+        onclick="addToCart(1);"
+    >Add to cart</button>
+    <button
+        onclick="addToCart(2);"
+    >+2</button>
+    <button
+        onclick="addToCart(3);"
+    >+3</button>
+    <button
+        onclick="addToCart(4);"
+    >+4</button>
+    <button
+        onclick="addToCart(5);"
+    >+5</button>
+    <button
+        onclick="quantity--; console.log(`Cart content: ${quantity}`);"
+    >Remove from cart</button>
+    <button
+        onclick="quantity -= 2; console.log(`Cart content: ${quantity}`);"
+    >-2</button>
+    <button
+        onclick="quantity -= 3; console.log(`Cart content: ${quantity}`);"
+    >-3</button>
+    <button
+        onclick="quantity = 0; console.log(`Cart was reset: ${quantity}`);"
+    >Reset Cart</button>
+    <script>
+        let quantity = 0;
+
+        function addToCart(amount) {
+            if (quantity + amount <= 10) {
+                quantity += amount;
+                console.log(`Cart content: ${quantity}`);
+            } else {
+                alert("Cart quantity would exceed the maximum of 10");
+            }
+        }
+    </script>
+</body>
+</html>

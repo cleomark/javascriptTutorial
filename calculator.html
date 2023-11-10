@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #000000;
+        }
+
+        .calculation {
+            color: #ffffff;
+            font-size: 45px;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+
+        .button-container {
+            height: 60px;
+            width: 60px;
+            color: #ffffff;
+            font-size: 26px;
+            background-color: #333333;
+            border: none;
+            border-radius: 50%;
+            margin-right: 5px;
+            padding-left: 1px 6px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculation">
+    <!-- Display the calculation here -->
+</div>
+
+<p>
+    <button class="button-container" onclick="appendToCalculation('1')">1</button>
+    <button class="button-container" onclick="appendToCalculation('2')">2</button>
+    <button class="button-container" onclick="appendToCalculation('3')">3</button>
+    <button class="button-container" style="background-color: #fea00a;" onclick="appendToCalculation(' + ')">+</button>
+</p>
+
+<p>
+    <button class="button-container" onclick="appendToCalculation('4')">4</button>
+    <button class="button-container" onclick="appendToCalculation('5')">5</button>
+    <button class="button-container" onclick="appendToCalculation('6')">6</button>
+    <button class="button-container" style="background-color: #fea00a;" onclick="appendToCalculation(' - ')">-</button>
+</p>
+
+<p>
+    <button class="button-container" onclick="appendToCalculation('7')">7</button>
+    <button class="button-container" onclick="appendToCalculation('8')">8</button>
+    <button class="button-container" onclick="appendToCalculation('9')">9</button>
+    <button class="button-container" style="background-color: #fea00a;" onclick="appendToCalculation(' * ')">*</button>
+</p>
+
+<p>
+    <button class="button-container" onclick="appendToCalculation('0')">0</button>
+    <button class="button-container" onclick="appendToCalculation('.')">.</button>
+    <button class="button-container" onclick="calculateResult()">=</button>
+    <button class="button-container" style="background-color: #fea00a;" onclick="appendToCalculation(' / ')">/</button>
+</p>
+
+<p>
+    <button class="button-container" style="font-size: 17px;" onclick="clearCalculation()">Clear</button>
+</p>
+
+<script>
+    let calculation = "";
+    const calculationDisplay = document.querySelector('.calculation');
+
+    // Function to append characters to the calculation string
+    function appendToCalculation(value) {
+        calculation += value;
+        updateDisplay();
+    }
+
+    // Function to calculate the result
+    function calculateResult() {
+        try {
+            calculation = eval(calculation);
+            updateDisplay();
+        } catch (error) {
+            calculation = "Error";
+            updateDisplay();
+        }
+    }
+
+    // Function to clear the calculation
+    function clearCalculation() {
+        calculation = "";
+        updateDisplay();
+    }
+
+    // Function to update the display with the current calculation
+    function updateDisplay() {
+        calculationDisplay.textContent = calculation;
+    }
+</script>
+</body>
+</html>
