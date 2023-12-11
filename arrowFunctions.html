@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List with Arrow Functions</title>
+    <style>
+      ul {
+        list-style-type: none;
+      }
+
+      .completed {
+        text-decoration: line-through;
+        color: gray;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>To-Do List with Arrow Functions</h1>
+
+    <!-- Task input and button -->
+    <div>
+      <input type="text" id="taskInput" placeholder="Add a new task" />
+      <button onclick="addTask()">Add Task</button>
+    </div>
+
+    <!-- Task list -->
+    <ul id="taskList"></ul>
+
+    <script>
+      // To-Do List using arrow functions
+      const tasks = [];
+
+      const addTask = () => {
+        const taskInput = document.getElementById("taskInput");
+        const taskText = taskInput.value.trim();
+
+        if (taskText !== "") {
+          tasks.push({ text: taskText, completed: false });
+          displayTasks();
+          taskInput.value = "";
+        }
+      };
+
+      const toggleTask = (index) => {
+        tasks[index].completed = !tasks[index].completed;
+        displayTasks();
+      };
+
+      const displayTasks = () => {
+        const taskList = document.getElementById("taskList");
+        taskList.innerHTML = "";
+
+        tasks.forEach((task, index) => {
+          const listItem = document.createElement("li");
+          listItem.className = task.completed ? "completed" : "";
+          listItem.innerHTML = `
+        <input type="checkbox" ${
+          task.completed ? "checked" : ""
+        } onchange="toggleTask(${index})">
+        ${task.text}
+      `;
+          taskList.appendChild(listItem);
+        });
+      };
+
+      // Initial display
+      displayTasks();
+    </script>
+  </body>
+</html>

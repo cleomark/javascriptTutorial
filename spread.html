@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pizza Builder</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      #pizzaBuilder {
+        max-width: 400px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        text-align: center;
+      }
+
+      #ingredientSelector {
+        margin-top: 20px;
+      }
+
+      #selectedIngredients {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="pizzaBuilder">
+      <h2>Pizza Builder</h2>
+
+      <div id="ingredientSelector">
+        <label for="ingredients">Choose ingredients:</label>
+        <select id="ingredients" multiple>
+          <option value="pepperoni">Pepperoni</option>
+          <option value="mushrooms">Mushrooms</option>
+          <option value="olives">Olives</option>
+          <option value="cheese">Cheese</option>
+        </select>
+        <button onclick="buildPizza()">Build Pizza</button>
+      </div>
+
+      <div id="selectedIngredients">
+        <h3>Selected Ingredients:</h3>
+        <p id="displayIngredients"></p>
+      </div>
+    </div>
+
+    <script>
+      // Function to build a pizza with selected ingredients
+      function buildPizza() {
+        // Get selected ingredients using spread syntax
+        const selectedIngredients = [
+          ...document.getElementById("ingredients").selectedOptions,
+        ].map((option) => option.value);
+
+        // Display the selected ingredients
+        const displayIngredients =
+          document.getElementById("displayIngredients");
+        displayIngredients.textContent =
+          selectedIngredients.length === 0
+            ? "No ingredients selected."
+            : `Ingredients: ${selectedIngredients.join(", ")}`;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Theme Changer Demo</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        transition: background-color 0.5s;
+      }
+
+      #themeSelector {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Theme Changer Demo</h1>
+
+    <div id="themeSelector">
+      <label for="theme">Choose a theme:</label>
+      <select id="theme" onchange="changeTheme()">
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+        <option value="blue">Blue</option>
+      </select>
+    </div>
+
+    <script>
+      // Simulating user preferences with a theme
+      const userPreferences = {
+        theme: "light",
+        notifications: true,
+      };
+
+      // Function to apply the selected theme
+      function applyTheme({ theme }) {
+        const body = document.body;
+
+        switch (theme) {
+          case "light":
+            body.style.backgroundColor = "#f5f5f5";
+            break;
+          case "dark":
+            body.style.backgroundColor = "#333";
+            break;
+          case "blue":
+            body.style.backgroundColor = "#3498db";
+            break;
+          default:
+            body.style.backgroundColor = "#fff";
+        }
+      }
+
+      // Function to handle theme change
+      function changeTheme() {
+        const selectedTheme = document.getElementById("theme").value;
+
+        // Simulating updating user preferences using destructuring
+        const updatedPreferences = { ...userPreferences, theme: selectedTheme };
+
+        // Applying the updated theme
+        applyTheme(updatedPreferences);
+      }
+
+      // Initial theme application
+      applyTheme(userPreferences);
+    </script>
+  </body>
+</html>

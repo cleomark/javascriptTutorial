@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Array Concepts</title>
+  </head>
+  <body>
+    <h1>Array Concepts Example</h1>
+
+    <!-- Display the array content -->
+    <p id="output"></p>
+
+    <!-- Form to interact with the array -->
+    <form onsubmit="submitForm(event)">
+      <label for="newFruit">Add a new fruit:</label>
+      <input type="text" id="newFruit" required />
+      <button type="submit">Add</button>
+    </form>
+
+    <!-- Buttons to perform array operations -->
+    <button onclick="removeLast()">Remove Last</button>
+    <button onclick="reverseArray()">Reverse</button>
+
+    <script>
+      // Array Declaration and Initialization
+      let fruits = ["Apple", "Banana", "Orange"];
+
+      // Display the array content
+      function displayArray() {
+        document.getElementById("output").innerText =
+          "Fruits: " + fruits.join(", ");
+      }
+
+      displayArray(); // Initial display
+
+      // Function to add a new fruit
+      function submitForm(event) {
+        event.preventDefault();
+        let newFruit = document.getElementById("newFruit").value;
+        fruits.push(newFruit);
+        displayArray(); // Update the display
+      }
+
+      // Function to remove the last fruit
+      function removeLast() {
+        if (fruits.length > 0) {
+          fruits.pop();
+          displayArray(); // Update the display
+        }
+      }
+
+      // Function to reverse the array
+      function reverseArray() {
+        fruits.reverse();
+        displayArray(); // Update the display
+      }
+    </script>
+  </body>
+</html>

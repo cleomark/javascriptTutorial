@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Calculator</title>
+    <style>
+      input {
+        width: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>JavaScript Calculator</h1>
+
+    <!-- Calculator Interface -->
+    <div>
+      <input type="text" id="display" readonly />
+    </div>
+
+    <div>
+      <button onclick="clearDisplay()">C</button>
+      <button onclick="appendToDisplay('1')">1</button>
+      <button onclick="appendToDisplay('2')">2</button>
+      <button onclick="appendToDisplay('3')">3</button>
+      <button onclick="performOperation('+')">+</button>
+    </div>
+
+    <div>
+      <button onclick="appendToDisplay('4')">4</button>
+      <button onclick="appendToDisplay('5')">5</button>
+      <button onclick="appendToDisplay('6')">6</button>
+      <button onclick="performOperation('-')">-</button>
+    </div>
+
+    <div>
+      <button onclick="appendToDisplay('7')">7</button>
+      <button onclick="appendToDisplay('8')">8</button>
+      <button onclick="appendToDisplay('9')">9</button>
+      <button onclick="performOperation('*')">*</button>
+    </div>
+
+    <div>
+      <button onclick="appendToDisplay('0')">0</button>
+      <button onclick="performOperation('/')">/</button>
+      <button onclick="calculateResult()">=</button>
+    </div>
+
+    <script>
+      let currentInput = "";
+      let storedValue = 0;
+      let currentOperation = null;
+
+      function appendToDisplay(value) {
+        currentInput += value;
+        updateDisplay();
+      }
+
+      function clearDisplay() {
+        currentInput = "";
+        updateDisplay();
+      }
+
+      function performOperation(operation) {
+        if (currentInput !== "") {
+          if (currentOperation !== null) {
+            calculateResult();
+          }
+          currentOperation = operation;
+          storedValue = parseFloat(currentInput);
+          clearDisplay();
+        }
+      }
+
+      function calculateResult() {
+        if (currentInput !== "" && currentOperation !== null) {
+          let inputValue = parseFloat(currentInput);
+          switch (currentOperation) {
+            case "+":
+              storedValue += inputValue;
+              break;
+            case "-":
+              storedValue -= inputValue;
+              break;
+            case "*":
+              storedValue *= inputValue;
+              break;
+            case "/":
+              if (inputValue !== 0) {
+                storedValue /= inputValue;
+              } else {
+                alert("Cannot divide by zero!");
+                clearCalculator();
+                return;
+              }
+              break;
+          }
+          currentInput = storedValue.toString();
+          currentOperation = null;
+          updateDisplay();
+        }
+      }
+
+      function updateDisplay() {
+        document.getElementById("display").value = currentInput;
+      }
+
+      function clearCalculator() {
+        currentInput = "";
+        storedValue = 0;
+        currentOperation = null;
+        updateDisplay();
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Object Concepts</title>
+  </head>
+  <body>
+    <h1>Object Concepts Example</h1>
+
+    <!-- Display the array of objects -->
+    <p id="output"></p>
+
+    <!-- Form to add a new person -->
+    <form onsubmit="addPerson(event)">
+      <label for="name">Name:</label>
+      <input type="text" id="name" required />
+      <label for="age">Age:</label>
+      <input type="number" id="age" required />
+      <label for="isStudent">Is Student:</label>
+      <input type="checkbox" id="isStudent" />
+      <button type="submit">Add Person</button>
+    </form>
+
+    <script>
+      // Array of objects representing people
+      let people = [
+        { name: "John", age: 25, isStudent: false },
+        { name: "Alice", age: 30, isStudent: true },
+        { name: "Bob", age: 22, isStudent: true },
+      ];
+
+      // Display information about each person
+      function displayPeople() {
+        let output = "";
+        for (let i = 0; i < people.length; i++) {
+          output +=
+            "Name: " +
+            people[i].name +
+            ", Age: " +
+            people[i].age +
+            ", Student: " +
+            people[i].isStudent +
+            "<br>";
+        }
+        document.getElementById("output").innerHTML = output;
+      }
+
+      displayPeople(); // Initial display
+
+      // Function to add a new person
+      function addPerson(event) {
+        event.preventDefault();
+
+        // Get values from the form
+        let name = document.getElementById("name").value;
+        let age = parseInt(document.getElementById("age").value);
+        let isStudent = document.getElementById("isStudent").checked;
+
+        // Create a new person object
+        let newPerson = {
+          name: name,
+          age: age,
+          isStudent: isStudent,
+        };
+
+        // Add the new person to the array
+        people.push(newPerson);
+
+        // Update the display
+        displayPeople();
+      }
+    </script>
+  </body>
+</html>
